@@ -1,0 +1,17 @@
+public class Solution {
+    public int Trap(int[] height) {
+        int i = 0; int n = height.Length; int count = 0; int max = height[0];
+        while (i<n){
+            if(i==0){i++; continue;}
+            int x = i-1;
+            while (x>=0 && height[x]<height[i] && height[x]<max){
+                count += Math.Min(height[i],max)-height[x];
+                height[x] += Math.Min(height[i],max)-height[x];
+                x--;               
+            }
+            max = Math.Max(max,height[i]);
+            i++;
+        }
+        return count;
+    }
+}
